@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euxo pipefail
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get upgrade -y
+apt-get install -y ca-certificates curl git nginx postgresql postgresql-contrib rsync
+# Node.js 20 is required by the application README.
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+adduser --disabled-password --gecos "" deploy || true
+install -d -o deploy -g deploy /opt/application-web
+install -d -o deploy -g deploy /var/www/roadmap-maker
+install -d -m 0750 /etc/roadmap-maker
+systemctl enable nginx
+systemctl start nginx

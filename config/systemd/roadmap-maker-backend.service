@@ -1,0 +1,17 @@
+[Unit]
+Description=Roadmap Maker Express API
+After=network.target postgresql.service
+Wants=postgresql.service
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/application-web/backend
+EnvironmentFile=/etc/roadmap-maker/backend.env
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target
