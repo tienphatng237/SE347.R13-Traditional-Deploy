@@ -22,7 +22,7 @@ set +a
 npx prisma generate
 npx prisma migrate deploy
 cd "$APP_DIR/frontend"
-npm ci
+npm ci --include=dev
 VITE_API_BASE_URL=/api npm run build
 sudo install -d -o deploy -g deploy "$WEB_ROOT"
 sudo rsync -a --delete dist/ "$WEB_ROOT/"
