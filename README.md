@@ -180,8 +180,7 @@ sudo systemctl reload nginx
 Repository `traditional-deploy` đã được clone ở bước 2, chạy script từ thư mục đó:
 
 ```bash
-chmod +x scripts/deploy.sh
-./scripts/deploy.sh /opt/application-web
+sudo bash scripts/deploy.sh /opt/application-web
 ```
 
 Frontend được build với `VITE_API_BASE_URL=/api`. Vì vậy, Nginx sẽ chuyển `/api/boards` thành `/boards` trên Express, khớp với các backend route hiện tại và không cần mở cổng 3000 ra Internet.
